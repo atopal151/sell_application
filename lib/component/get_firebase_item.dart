@@ -12,8 +12,10 @@ class FirebaseGetItem extends StatelessWidget {
   FirebaseGetItem({
     Key? key,
     required this.columnCount,
+    required this.mail,
   }) : super(key: key);
   final int columnCount;
+  final String mail;
   UserController uctrl = Get.put(UserController());
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -22,8 +24,10 @@ class FirebaseGetItem extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 150) / 2;
     final double itemWidth = size.width / 2;
-    final Stream<QuerySnapshot> usersStream =
-        FirebaseFirestore.instance.collection('ilanImage').snapshots();
+    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance
+        .collection('ilanImage')
+        .where('shareUserMail', isEqualTo: mail)
+        .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
       stream: usersStream,

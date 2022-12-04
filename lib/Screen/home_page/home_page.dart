@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sell_app/component/component.dart';
 import 'package:sell_app/component/general_app_barr.dart';
 import '../../component/get_firebase_item.dart';
+import '../../component/user_controller.dart';
 import 'component/category_list.dart';
 import 'component/header_with_search_box.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
+  UserController uctrl = Get.put(UserController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,6 +30,7 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: FirebaseGetItem(
                 columnCount: 2,
+                mail: uctrl.mailAdress.toString(),
               ),
             ),
           ],

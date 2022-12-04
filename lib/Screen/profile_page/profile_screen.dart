@@ -16,15 +16,15 @@ class ProfilePage extends StatelessWidget {
   final UserController ucontrol = Get.put(UserController());
 
   final _switchVal = false.obs;
-  late FirebaseAuth auth;
+  // late FirebaseAuth auth;
 
-  void gmailoutuser() async {
+  /* void gmailoutuser() async {
     var user = GoogleSignIn().currentUser;
     if (user != null) {
       await GoogleSignIn().currentUser!;
     }
     await auth.signOut();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +92,7 @@ class ProfilePage extends StatelessWidget {
                 const Text("Çıkış Yap"),
                 IconButton(
                   onPressed: () {
-                    gmailoutuser();
+                    ucontrol.gmailoutuser();
                     Get.snackbar("Uyarı", "Çıkış yapıldı.");
                     Get.off(const LoginPage());
                   },

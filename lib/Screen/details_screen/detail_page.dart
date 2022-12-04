@@ -62,7 +62,21 @@ class DetailsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    locationBlock(city: konum),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "$fiyat TL",
+                        style: const TextStyle(
+                            height: 1.5,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    locationBlock(
+                        city: konum, icons: const Icon(Icons.location_on)),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
@@ -231,17 +245,16 @@ class DetailsPage extends StatelessWidget {
     );
   }
 
-  Row locationBlock({required String city}) {
+  Row locationBlock({required String city, required Icon icons}) {
     return Row(
       children: <Widget>[
-        const Icon(
-          Icons.location_on,
-          color: greyColor,
-        ),
+        icons,
         const SizedBox(width: 10),
         Text(
           city,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     );

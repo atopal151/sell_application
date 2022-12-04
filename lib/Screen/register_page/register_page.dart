@@ -2,9 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 
 import '../../component/component.dart';
+import 'component/text_field_register.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  late TextEditingController controllerMail;
+  late TextEditingController controllerPassword;
+  late TextEditingController controllerName;
+  late TextEditingController controllerTwoPassword;
+
+  @override
+  void initState() {
+    super.initState();
+    controllerMail = TextEditingController();
+    controllerPassword = TextEditingController();
+    controllerName = TextEditingController();
+    controllerTwoPassword = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,58 +49,30 @@ class RegisterPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 30.0, right: 30.0, top: 10.0),
-                    child: TextFormField(
-                      cursorColor: kSecondaryColor,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Ad Soyad',
-                        prefixIcon: Icon(Icons.person_sharp),
-                      ),
-                    ),
+                  TextBoxWidgetRegister(
+                    icons: const Icon(Icons.person),
+                    title: "Kullanıcı Adı",
+                    controllerText: controllerName,
+                    type: TextInputType.text,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 30.0, right: 30.0, top: 10.0),
-                    child: TextFormField(
-                      cursorColor: kSecondaryColor,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Email',
-                        prefixIcon: Icon(Icons.mail),
-                      ),
-                    ),
+                  TextBoxWidgetRegister(
+                    icons: const Icon(Icons.mail),
+                    title: "Email",
+                    controllerText: controllerMail,
+                    type: TextInputType.text,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 30.0, right: 30.0, top: 10.0),
-                    child: TextFormField(
-                      cursorColor: kSecondaryColor,
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Şifre',
-                        prefixIcon: Icon(Icons.lock),
-                      ),
-                    ),
+                  TextBoxWidgetRegister(
+                    icons: const Icon(Icons.lock),
+                    title: "Şifre",
+                    controllerText: controllerPassword,
+                    type: TextInputType.number,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 30.0, right: 30.0, top: 10.0),
-                    child: TextFormField(
-                      cursorColor: kSecondaryColor,
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Şifreyi Onayla',
-                        prefixIcon: Icon(Icons.lock),
-                      ),
-                    ),
-                  )
+                  TextBoxWidgetRegister(
+                    icons: const Icon(Icons.lock),
+                    title: "Şifreyi Onayla",
+                    controllerText: controllerTwoPassword,
+                    type: TextInputType.number,
+                  ),
                 ],
               ),
             ),

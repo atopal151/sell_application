@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: "/register",
-          page: () => const RegisterPage(),
+          page: () => RegisterPage(),
         ),
         GetPage(
           name: "/bottomnavbar",

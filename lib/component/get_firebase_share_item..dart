@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:sell_app/Screen/details_screen/detail_page.dart';
 import 'package:sell_app/component/user_controller.dart';
 import 'component.dart';
 

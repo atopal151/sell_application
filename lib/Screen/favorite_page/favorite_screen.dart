@@ -1,10 +1,16 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sell_app/Screen/favorite_page/component/favorite_app_bar.dart';
-import 'package:sell_app/Screen/favorite_page/component/product_list.dart';
 import 'package:sell_app/component/component.dart';
+import 'package:sell_app/component/user_controller.dart';
+
+import '../../component/get_firebase_share_item..dart';
 
 class FavoritePage extends StatelessWidget {
-  const FavoritePage({Key? key}) : super(key: key);
+  FavoritePage({Key? key}) : super(key: key);
+  UserController uControl = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +21,11 @@ class FavoritePage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: favoriteAppbar(context),
         body: TabBarView(children: [
-          Column(
-            children: [
-              ProductCard(
-                  itemIndex: 1,
-                  press: () {},
-                  imgpath: "assets/image/telefon.jpg",
-                  title: "Başlık"),
-              ProductCard(
-                  itemIndex: 1,
-                  press: () {},
-                  imgpath: "assets/image/bebek.jpg",
-                  title: "Başlık"),
-            ],
+          Center(
+            child: FirebaseGetShareItem(
+              columnCount: 1,
+              mail: uControl.mailAdress.toString(),
+            ),
           ),
           Center(
             child: Row(

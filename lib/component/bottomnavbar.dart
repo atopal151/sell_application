@@ -18,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     HomePage(),
     const MessagePage(),
     const SalesPage(),
-    const FavoritePage(),
+    FavoritePage(),
     ProfilePage()
   ];
 

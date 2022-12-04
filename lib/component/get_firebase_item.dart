@@ -24,10 +24,8 @@ class FirebaseGetItem extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 150) / 2;
     final double itemWidth = size.width / 2;
-    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance
-        .collection('ilanImage')
-        .where('shareUserMail', isEqualTo: mail)
-        .snapshots();
+    final Stream<QuerySnapshot> usersStream =
+        FirebaseFirestore.instance.collection('ilanImage').snapshots();
 
     return StreamBuilder<QuerySnapshot>(
       stream: usersStream,

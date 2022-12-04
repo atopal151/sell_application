@@ -102,7 +102,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.1),
+                    SizedBox(height: Get.height * 0.05),
                     const Text(
                       "Detaylar",
                       style:

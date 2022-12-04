@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "587549584096",
+    "project_id": "sell-application",
+    "storage_bucket": "sell-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587549584096:android:7e8bfeb74e5b128714fe85",
+        "android_client_info": {
+          "package_name": "com.example.sell_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587549584096-qnlhu8jbrqvkckpqfm4kq7r4ng7iejh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBtHu5D0RhAijPK7IQzYRtcP1vHIv_Olk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587549584096-qnlhu8jbrqvkckpqfm4kq7r4ng7iejh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

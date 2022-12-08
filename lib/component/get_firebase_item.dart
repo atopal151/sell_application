@@ -12,12 +12,12 @@ class FirebaseGetItem extends StatelessWidget {
   FirebaseGetItem({
     Key? key,
     required this.columnCount,
-    required this.mail,
+    required this.category,
   }) : super(key: key);
   final int columnCount;
-  final String mail;
+  final String category;
   UserController uctrl = Get.put(UserController());
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  //FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,13 @@ class FirebaseGetItem extends StatelessWidget {
     final Stream<QuerySnapshot> usersStream =
         FirebaseFirestore.instance.collection('ilanImage').snapshots();
 
+    final Stream<QuerySnapshot> usersStream2 = FirebaseFirestore.instance
+        .collection('ilanImage')
+        .where('category', isEqualTo: category)
+        .snapshots();
+
     return StreamBuilder<QuerySnapshot>(
-      stream: usersStream,
+      stream: category == "" ? usersStream : usersStream2,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Tooltip(message: 'Something went wrong');

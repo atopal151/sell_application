@@ -66,7 +66,7 @@ class DetailsPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "$fiyat TL",
+                        " $fiyat TL",
                         style: const TextStyle(
                             height: 1.5,
                             fontSize: 18,

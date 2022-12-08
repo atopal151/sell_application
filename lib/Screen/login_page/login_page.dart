@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: IconButton(
                               icon: Image.asset("assets/image/google.png"),
-                              onPressed: () {
+                              onPressed: () async {
                                 gmailLogin();
                               },
                             ),
@@ -184,6 +184,11 @@ class _LoginPageState extends State<LoginPage> {
         await googleUser?.authentication;
     final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+    //try  {
     await FirebaseAuth.instance.signInWithCredential(credential);
+    /* } catch (e) {
+      Get.snackbar("Error!", "$e");
+      print(e);
+    }*/
   }
 }

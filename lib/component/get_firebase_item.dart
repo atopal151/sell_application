@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, must_be_immutable
+// ignore_for_file: unused_local_variable, must_be_immutable, unnecessary_null_comparison
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,6 @@ class FirebaseGetItem extends StatelessWidget {
   final int columnCount;
   final String category;
   UserController uctrl = Get.put(UserController());
-  //FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +54,10 @@ class FirebaseGetItem extends StatelessWidget {
               debugPrint(data['ilanImages'].toString());
               return Container(
                 margin: const EdgeInsets.only(
-                  left: 12,
-                  right: 12,
-                  top: 20,
+                  left: 10,
+                  bottom: 10,
+                  right: 10,
+                  top: 10,
                 ),
                 decoration: BoxDecoration(
                   color: whiteColor,
@@ -121,7 +121,7 @@ class FirebaseGetItem extends StatelessWidget {
                             flex: 2,
                             child: Text(
                               "${data['ilanBaslik']}",
-                              style: const TextStyle(fontSize: 12),
+                              style: const TextStyle(fontSize: 14),
                             ),
                           ),
                           Row(

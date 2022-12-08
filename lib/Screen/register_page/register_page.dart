@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:get/get.dart';
 
 import '../../component/component.dart';
 import 'component/text_field_register.dart';
@@ -16,6 +18,8 @@ class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController controllerPassword;
   late TextEditingController controllerName;
   late TextEditingController controllerTwoPassword;
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   void initState() {
@@ -82,7 +86,21 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: (AnimatedButton(
-                onPress: () {},
+                onPress: () {
+                  if (controllerPassword.text == controllerTwoPassword.text) {
+                    firestore
+                        .doc("users/${firestore.collection("users").doc().id}")
+                        .set({
+                      "userName": controllerName.text.toString(),
+                      "email": controllerMail.text.toString(),
+                      "password": controllerPassword.text.toString(),
+                    }, SetOptions(merge: true));
+
+                    Get.snackbar("Başarılı", "Kayıt Tamamlandı.");
+                  } else {
+                    Get.snackbar("Dikkat!", "Şifrenizi doğru yazın...");
+                  }
+                },
                 text: 'Kayıt ol',
                 height: 50,
                 width: 330,

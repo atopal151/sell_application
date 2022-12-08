@@ -86,6 +86,7 @@ class FirebaseGetItem extends StatelessWidget {
                         shareUserName: data['shareUserName'].toString(),
                         shareUserPhoto: data['shareUserPhoto'].toString(),
                         situation: data['situation'].toString(),
+                        ilan_id: document.id,
                       ));
                     },
                     child: Padding(

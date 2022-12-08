@@ -17,8 +17,9 @@ class DetailsPage extends StatelessWidget {
     required this.shareUserMail,
     required this.konum,
     required this.ilanAciklama,
+    required this.ilan_id,
   }) : super(key: key);
-
+  final String ilan_id;
   final String photo_url;
   final String category;
   final String fiyat;
@@ -175,7 +176,9 @@ class DetailsPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        print(ilan_id);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Row(

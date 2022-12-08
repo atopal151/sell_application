@@ -20,7 +20,7 @@ AppBar GeneralAppBar(BuildContext context, Color clr, clr2) {
     ),
     actions: [
       SizedBox(
-        width: 90,
+        width: 80,
         child: Center(
           child: CircleAvatar(
             backgroundColor: Colors.white,

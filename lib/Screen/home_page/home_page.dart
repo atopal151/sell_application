@@ -20,8 +20,6 @@ class _HomePageState extends State<HomePage> {
   var selectedcategoryVal = "Diğer".obs;
   DropDownCategoty dropDownCategory = DropDownCategoty();
 
-  late String category = "";
-
   UserController uctrl = Get.put(UserController());
   @override
   Widget build(BuildContext context) {

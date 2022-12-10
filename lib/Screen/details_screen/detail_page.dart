@@ -18,6 +18,7 @@ class DetailsPage extends StatelessWidget {
     required this.konum,
     required this.ilanAciklama,
     required this.ilan_id,
+    required this.iletisim,
   }) : super(key: key);
   final String ilan_id;
   final String photo_url;
@@ -31,6 +32,7 @@ class DetailsPage extends StatelessWidget {
   final String shareUserPhoto;
   final String shareUserMail;
   final String konum;
+  final String iletisim;
 
   @override
   Widget build(BuildContext context) {
@@ -158,6 +160,11 @@ class DetailsPage extends StatelessWidget {
                               ),
                               detailBlock(
                                   detailTitle: "Mail:", detail: shareUserMail),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              detailBlock(
+                                  detailTitle: "İletişim:", detail: iletisim),
                             ],
                           ),
                         ],
@@ -212,7 +219,9 @@ class DetailsPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.snackbar("İletişim numaram:", iletisim);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Row(

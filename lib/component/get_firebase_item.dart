@@ -32,7 +32,7 @@ class FirebaseGetItem extends StatelessWidget {
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
-      stream: category == "" ? usersStream : usersStream2,
+      stream: category == "Diğer" ? usersStream : usersStream2,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Tooltip(message: 'Something went wrong');
@@ -75,6 +75,7 @@ class FirebaseGetItem extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       Get.to(DetailsPage(
+                        iletisim: data["iletisim"].toString(),
                         photo_url: data['ilanImages'].toString(),
                         category: data['category'].toString(),
                         fiyat: data['fiyat'].toString(),

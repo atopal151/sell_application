@@ -43,6 +43,7 @@ class _SalesPageState extends State<SalesPage> {
   late TextEditingController controllerAcikla;
   late TextEditingController controllerFiyat;
   late TextEditingController controllerKonum;
+  late TextEditingController controllerIletisim;
 
   @override
   void initState() {
@@ -51,6 +52,7 @@ class _SalesPageState extends State<SalesPage> {
     controllerAcikla = TextEditingController();
     controllerFiyat = TextEditingController();
     controllerKonum = TextEditingController();
+    controllerIletisim = TextEditingController();
   }
 
   @override
@@ -156,6 +158,14 @@ class _SalesPageState extends State<SalesPage> {
                   controllerText: controllerFiyat,
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextBoxWidget(
+                  type: TextInputType.number,
+                  title: "İletişim*",
+                  controllerText: controllerIletisim,
+                ),
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -232,31 +242,38 @@ class _SalesPageState extends State<SalesPage> {
                     padding: const EdgeInsets.all(15.0),
                     child: AnimatedButton(
                       onPress: () {
-                        var ilanImage = FirebaseStorage.instance.ref(
-                            "ilanImage/${firestore.collection("ilanImage").doc().id}");
-                        var task = ilanImage.putFile(File(file!.path));
-                        task.whenComplete(() async {
-                          var imageUrl = await ilanImage.getDownloadURL();
-                          firestore
-                              .doc(
-                                  "ilanImage/${firestore.collection("ilanImage").doc().id}")
-                              .set({
-                            "category": selectedcategoryVal.toString(),
-                            "situation": selectedSituationVal.toString(),
-                            "ilanBaslik": controllerBaslik.text.toString(),
-                            "ilanAciklama": controllerAcikla.text.toString(),
-                            "fiyat": controllerFiyat.text.toString(),
-                            "konum": selectedCountryVal.toString(),
-                            "shareUserName": ucontrol.name.toString(),
-                            "shareUserMail": ucontrol.mailAdress.toString(),
-                            "shareUserPhoto": ucontrol.photo.toString(),
-                            "ilanImages": imageUrl.toString(),
-                            "ilanTarihi":
-                                "${now.day.toString()}.${now.month.toString()}.${now.year.toString()} ${now.hour.toString()}:${now.minute.toString()}",
-                          }, SetOptions(merge: true));
+                        if (controllerBaslik.text != "" ||
+                            controllerFiyat.text != "") {
+                          var ilanImage = FirebaseStorage.instance.ref(
+                              "ilanImage/${firestore.collection("ilanImage").doc().id}");
+                          var task = ilanImage.putFile(File(file!.path));
+                          task.whenComplete(() async {
+                            var imageUrl = await ilanImage.getDownloadURL();
+                            firestore
+                                .doc(
+                                    "ilanImage/${firestore.collection("ilanImage").doc().id}")
+                                .set({
+                              "category": selectedcategoryVal.toString(),
+                              "situation": selectedSituationVal.toString(),
+                              "ilanBaslik": controllerBaslik.text.toString(),
+                              "ilanAciklama": controllerAcikla.text.toString(),
+                              "fiyat": controllerFiyat.text.toString(),
+                              "iletisim": controllerIletisim.text.toString(),
+                              "konum": selectedCountryVal.toString(),
+                              "shareUserName": ucontrol.name.toString(),
+                              "shareUserMail": ucontrol.mailAdress.toString(),
+                              "shareUserPhoto": ucontrol.photo.toString(),
+                              "ilanImages": imageUrl.toString(),
+                              "ilanTarihi":
+                                  "${now.day.toString()}.${now.month.toString()}.${now.year.toString()} ${now.hour.toString()}:${now.minute.toString()}",
+                            }, SetOptions(merge: true));
+                            Get.snackbar(
+                                "Başarılı", "İlanın başarı ile kaydedildi.");
+                          });
+                        } else {
                           Get.snackbar(
-                              "Başarılı", "İlanın başarı ile kaydedildi.");
-                        });
+                              "Uyarı", "Lütfen zorunlu alanları doldurunuz.");
+                        }
                       },
                       text: 'İlanı Yayınla',
                       textStyle: const TextStyle(

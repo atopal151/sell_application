@@ -24,7 +24,7 @@ AppBar GeneralAppBar(BuildContext context, Color clr, clr2) {
         child: Center(
           child: CircleAvatar(
             backgroundColor: Colors.white,
-            radius: 25,
+            radius: 20,
             backgroundImage: NetworkImage(ucontrol.photo.toString()),
           ),
         ),

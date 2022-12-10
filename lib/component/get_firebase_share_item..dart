@@ -61,7 +61,7 @@ class FirebaseGetShareItem extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     children: <Widget>[
                       Container(
-                        height: 136,
+                        height: 140,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(22),
                           color: 1.isEven ? kPrimaryRedColor : kSecondaryColor,
@@ -76,7 +76,6 @@ class FirebaseGetShareItem extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 5,
                         right: 30,
                         child: Hero(
                           tag: 'kutu',

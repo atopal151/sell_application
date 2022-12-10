@@ -65,7 +65,7 @@ class FirebaseGetShareItem extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(22),
                           color: 1.isEven ? kPrimaryRedColor : kSecondaryColor,
-                          //boxShadow: const [kDefaultShadow],
+                          boxShadow: const [kDefaultShadow],
                         ),
                         child: Container(
                           margin: const EdgeInsets.only(right: 10),

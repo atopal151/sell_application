@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sell_app/component/user_controller.dart';
+import '../Screen/details_screen/detail_page share.dart';
 import 'component.dart';
 
 class FirebaseGetShareItem extends StatelessWidget {
@@ -56,7 +57,23 @@ class FirebaseGetShareItem extends StatelessWidget {
                 ),
                 height: 160,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(DetailsPageShare(
+                      iletisim: data["iletisim"].toString(),
+                      photo_url: data['ilanImages'].toString(),
+                      category: data['category'].toString(),
+                      fiyat: data['fiyat'].toString(),
+                      ilanBaslik: data['ilanBaslik'].toString(),
+                      ilanAciklama: data['ilanAciklama'].toString(),
+                      ilanTarihi: data['ilanTarihi'].toString(),
+                      konum: data['konum'].toString(),
+                      shareUserMail: data['shareUserMail'].toString(),
+                      shareUserName: data['shareUserName'].toString(),
+                      shareUserPhoto: data['shareUserPhoto'].toString(),
+                      situation: data['situation'].toString(),
+                      ilan_id: document.id,
+                    ));
+                  },
                   child: Stack(
                     alignment: Alignment.bottomCenter,
                     children: <Widget>[
@@ -77,16 +94,13 @@ class FirebaseGetShareItem extends StatelessWidget {
                       ),
                       Positioned(
                         right: 30,
-                        child: Hero(
-                          tag: 'kutu',
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: SizedBox.fromSize(
-                              size: const Size.fromRadius(70),
-                              child: Image.network(
-                                data['ilanImages'].toString(),
-                                fit: BoxFit.cover,
-                              ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(70),
+                            child: Image.network(
+                              data['ilanImages'].toString(),
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),

@@ -23,19 +23,12 @@ class FirebaseGetItem extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 150) / 2;
     final double itemWidth = size.width / 2;
-    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance
-        .collection('ilanImage')
-        .orderBy(
-          "ilanTarihi",
-        )
-        .snapshots();
+    final Stream<QuerySnapshot> usersStream =
+        FirebaseFirestore.instance.collection('ilanImage').snapshots();
 
     final Stream<QuerySnapshot> usersStream2 = FirebaseFirestore.instance
         .collection('ilanImage')
         .where('category', isEqualTo: category)
-        .orderBy(
-          "ilanTarihi",
-        )
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(

@@ -6,23 +6,23 @@ import 'package:sell_app/component/component.dart';
 
 import '../../component/user_controller.dart';
 
-class DetailsPage extends StatelessWidget {
-  DetailsPage({
-    Key? key,
-    required this.photo_url,
-    required this.category,
-    required this.fiyat,
-    required this.ilanBaslik,
-    required this.ilanTarihi,
-    required this.situation,
-    required this.shareUserName,
-    required this.shareUserPhoto,
-    required this.shareUserMail,
-    required this.konum,
-    required this.ilanAciklama,
-    required this.ilan_id,
-    required this.iletisim,
-  }) : super(key: key);
+class DetailsPageShare extends StatefulWidget {
+  const DetailsPageShare(
+      {Key? key,
+      required this.ilan_id,
+      required this.photo_url,
+      required this.category,
+      required this.fiyat,
+      required this.ilanBaslik,
+      required this.ilanAciklama,
+      required this.ilanTarihi,
+      required this.situation,
+      required this.shareUserName,
+      required this.shareUserPhoto,
+      required this.shareUserMail,
+      required this.konum,
+      required this.iletisim})
+      : super(key: key);
   final String ilan_id;
   final String photo_url;
   final String category;
@@ -37,8 +37,12 @@ class DetailsPage extends StatelessWidget {
   final String konum;
   final String iletisim;
 
-  final UserController ucontrol = Get.find();
+  @override
+  State<DetailsPageShare> createState() => _DetailsPageShareState();
+}
 
+class _DetailsPageShareState extends State<DetailsPageShare> {
+  final UserController ucontrol = Get.find();
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
@@ -54,7 +58,7 @@ class DetailsPage extends StatelessWidget {
           expandedHeight: 250,
           flexibleSpace: FlexibleSpaceBar(
             background: Image.network(
-              photo_url.toString(),
+              widget.photo_url.toString(),
               fit: BoxFit.cover,
             ),
           ),
@@ -78,7 +82,7 @@ class DetailsPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            " $fiyat TL",
+                            " ${widget.fiyat} TL",
                             style: const TextStyle(
                                 height: 1.5,
                                 fontSize: 20,
@@ -93,7 +97,7 @@ class DetailsPage extends StatelessWidget {
                                       .doc(
                                           "favorites/${firestore.collection("favorites").doc().id}")
                                       .set({
-                                    "ilanid": ilan_id.toString(),
+                                    "ilanid": widget.ilan_id.toString(),
                                     "userMail": ucontrol.mailAdress.toString(),
                                   }, SetOptions(merge: true));
                                   Get.snackbar(
@@ -112,11 +116,12 @@ class DetailsPage extends StatelessWidget {
                       height: 20,
                     ),
                     locationBlock(
-                        city: konum, icons: const Icon(Icons.location_on)),
+                        city: widget.konum,
+                        icons: const Icon(Icons.location_on)),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        ilanBaslik,
+                        widget.ilanBaslik,
                         style: const TextStyle(
                           height: 1.5,
                         ),
@@ -132,7 +137,7 @@ class DetailsPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        ilanAciklama,
+                        widget.ilanAciklama,
                         style: const TextStyle(
                           height: 1.5,
                         ),
@@ -149,17 +154,19 @@ class DetailsPage extends StatelessWidget {
                       child: Column(
                         children: [
                           detailBlock(
-                              detailTitle: "Kategori:", detail: category),
+                              detailTitle: "Kategori:",
+                              detail: widget.category),
                           const SizedBox(
                             height: 10,
                           ),
                           detailBlock(
-                              detailTitle: "Durumu:", detail: situation),
+                              detailTitle: "Durumu:", detail: widget.situation),
                           const SizedBox(
                             height: 10,
                           ),
                           detailBlock(
-                              detailTitle: "ilan Tarihi:", detail: ilanTarihi),
+                              detailTitle: "ilan Tarihi:",
+                              detail: widget.ilanTarihi),
                         ],
                       ),
                     ),
@@ -177,7 +184,7 @@ class DetailsPage extends StatelessWidget {
                             backgroundColor: Colors.white,
                             radius: 40,
                             backgroundImage:
-                                NetworkImage(shareUserPhoto.toString()),
+                                NetworkImage(widget.shareUserPhoto.toString()),
                           ),
                           const SizedBox(
                             width: 20,
@@ -187,17 +194,19 @@ class DetailsPage extends StatelessWidget {
                             children: [
                               detailBlock(
                                   detailTitle: "Ad Soyad:",
-                                  detail: shareUserName),
+                                  detail: widget.shareUserName),
                               const SizedBox(
                                 height: 10,
                               ),
                               detailBlock(
-                                  detailTitle: "Mail:", detail: shareUserMail),
+                                  detailTitle: "Mail:",
+                                  detail: widget.shareUserMail),
                               const SizedBox(
                                 height: 10,
                               ),
                               detailBlock(
-                                  detailTitle: "İletişim:", detail: iletisim),
+                                  detailTitle: "İletişim:",
+                                  detail: widget.iletisim),
                             ],
                           ),
                         ],
@@ -217,7 +226,7 @@ class DetailsPage extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        print(ilan_id);
+                        print(widget.ilan_id);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
@@ -253,7 +262,7 @@ class DetailsPage extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        Get.snackbar("İletişim numaram:", iletisim);
+                        Get.snackbar("İletişim numaram:", widget.iletisim);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),

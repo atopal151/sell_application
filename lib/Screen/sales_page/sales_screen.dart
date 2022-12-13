@@ -268,11 +268,17 @@ class _SalesPageState extends State<SalesPage> {
                                   "${now.day.toString()}.${now.month.toString()}.${now.year.toString()} ${now.hour.toString()}:${now.minute.toString()}",
                             }, SetOptions(merge: true));
                             Get.snackbar(
-                                "Başarılı", "İlanın başarı ile kaydedildi.");
+                                "Başarılı", "İlanın başarı ile kaydedildi.",
+                                backgroundColor: kPrimaryGreenColor,
+                                colorText: whiteColor,
+                                duration: const Duration(seconds: 2));
                           });
                         } else {
                           Get.snackbar(
-                              "Uyarı", "Lütfen zorunlu alanları doldurunuz.");
+                              "Uyarı", "Lütfen zorunlu alanları doldurunuz.",
+                              backgroundColor: kPrimaryRedColor,
+                              colorText: whiteColor,
+                              duration: const Duration(seconds: 2));
                         }
                       },
                       text: 'İlanı Yayınla',

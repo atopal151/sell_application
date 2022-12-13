@@ -232,7 +232,6 @@ class _SalesPageState extends State<SalesPage> {
                               file = await picker.pickImage(
                                   source: ImageSource.camera);
                               imagepath = file!.path.obs;
-
                               setState(() {});
                             },
                           ))

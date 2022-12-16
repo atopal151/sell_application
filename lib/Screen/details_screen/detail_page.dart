@@ -93,13 +93,28 @@ class DetailsPage extends StatelessWidget {
                                       .doc(
                                           "favorites/${firestore.collection("favorites").doc().id}")
                                       .set({
+                                    "category": category.toString(),
+                                    "situation": situation.toString(),
+                                    "ilanBaslik": ilanBaslik.toString(),
+                                    "ilanAciklama": ilanAciklama.toString(),
+                                    "fiyat": fiyat.toString(),
+                                    "iletisim": iletisim.toString(),
+                                    "konum": konum.toString(),
+                                    "shareUserName": ucontrol.name.toString(),
+                                    "shareUserMail":
+                                        ucontrol.mailAdress.toString(),
+                                    "shareUserPhoto": ucontrol.photo.toString(),
+                                    "ilanImages": photo_url.toString(),
+                                    "ilanTarihi": ilanTarihi.toString(),
                                     "ilanid": ilan_id.toString(),
-                                    "userMail": ucontrol.mailAdress.toString(),
+                                    "addUserMail":
+                                        ucontrol.mailAdress.toString()
                                   }, SetOptions(merge: true));
                                   Get.snackbar(
                                       "Başarılı", "Favorilere kaydedildi.",
-                                      backgroundColor: kPrimaryGreenColor,
-                                      colorText: whiteColor,
+                                      backgroundColor: whiteColor,
+                                      icon: const Icon(Icons.check),
+                                      colorText: Colors.black,
                                       duration: const Duration(seconds: 1));
                                 },
                                 child: const Icon(

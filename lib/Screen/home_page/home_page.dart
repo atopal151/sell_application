@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sell_app/component/component.dart';
 import 'package:sell_app/component/general_app_barr.dart';
-import '../../component/get_firebase_item.dart';
+import '../../get_data_firebase/get_firebase_item.dart';
 import '../../component/user_controller.dart';
 import '../sales_page/component/dropdown_category.dart';
 import 'component/header_with_search_box.dart';

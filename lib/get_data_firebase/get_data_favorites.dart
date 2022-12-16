@@ -1,42 +1,40 @@
-// ignore_for_file: unused_local_variable, must_be_immutable, unnecessary_null_comparison
+// ignore_for_file: must_be_immutable, file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:sell_app/Screen/details_screen/detail_page.dart';
-import 'package:sell_app/component/user_controller.dart';
-import 'component.dart';
+import '../Screen/details_screen/detail_page.dart';
+import '../component/component.dart';
 
-class FirebaseGetItem extends StatelessWidget {
-  FirebaseGetItem({
+class FirebaseGetFavoriteItem extends StatelessWidget {
+  FirebaseGetFavoriteItem({
     Key? key,
     required this.columnCount,
-    required this.category,
+    required this.mail,
   }) : super(key: key);
-  final int columnCount;
-  final String category;
-  UserController uctrl = Get.put(UserController());
 
+  final int columnCount;
+  final String mail;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 150) / 2;
     final double itemWidth = size.width / 2;
-    final Stream<QuerySnapshot> usersStream =
-        FirebaseFirestore.instance.collection('ilanImage').snapshots();
 
-    final Stream<QuerySnapshot> usersStream2 = FirebaseFirestore.instance
-        .collection('ilanImage')
-        .where('category', isEqualTo: category)
+    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance
+        .collection('favorites')
+        .where('addUserMail', isEqualTo: mail)
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
-      stream: category == "Diğer" ? usersStream : usersStream2,
+      stream: usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Tooltip(message: 'Something went wrong');
         }
+
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const SpinKitRing(
             color: kPrimaryRedColor,
@@ -127,19 +125,39 @@ class FirebaseGetItem extends StatelessWidget {
                             ),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Icon(
                                 Icons.location_on,
                                 color: greyColor,
                                 size: 18,
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
                               Text(
                                 data['konum'].toString(),
                                 style: const TextStyle(
                                     fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: kPrimaryRedColor,
+                                  size: 20,
+                                ),
+                                onPressed: () {
+                                  firestore
+                                      .doc(
+                                          "favorites/${firestore.collection("favorites").doc(document.id).id}")
+                                      .delete();
+                                  Get.snackbar(
+                                      "Başarılı", "İlanın başarı ile silindi.",
+                                      backgroundColor: whiteColor,
+                                      icon: const Icon(Icons.delete),
+                                      colorText: Colors.black,
+                                      duration: const Duration(seconds: 2));
+                                },
                               ),
                             ],
                           ),

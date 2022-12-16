@@ -3,15 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sell_app/Screen/favorite_page/component/favorite_app_bar.dart';
-import 'package:sell_app/component/component.dart';
+import 'package:sell_app/component/general_app_barr.dart';
 import 'package:sell_app/component/user_controller.dart';
+import 'package:sell_app/get_data_firebase/get_data_favorites.dart';
 
-import '../../component/get_firebase_share_item..dart';
+import '../../get_data_firebase/get_firebase_share_item..dart';
 
 class FavoritePage extends StatelessWidget {
   FavoritePage({Key? key}) : super(key: key);
   UserController uControl = Get.put(UserController());
 
+  late String asd;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -28,19 +30,9 @@ class FavoritePage extends StatelessWidget {
             ),
           ),
           Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "Favorilerin ",
-                  style: TextStyle(fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  "Boş",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: kPrimaryRedColor),
-                )
-              ],
+            child: FirebaseGetFavoriteItem(
+              columnCount: 2,
+              mail: ucontrol.mailAdress.toString(),
             ),
           )
         ]),

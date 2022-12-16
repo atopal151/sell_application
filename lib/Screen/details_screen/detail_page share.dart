@@ -235,14 +235,16 @@ class _DetailsPageShareState extends State<DetailsPageShare> {
                           );
                           Get.snackbar(
                               "Başarılı", "İlanın başarı ile güncellendi.",
-                              backgroundColor: kPrimaryGreenColor,
-                              colorText: whiteColor,
+                              backgroundColor: whiteColor,
+                              icon: const Icon(Icons.check),
+                              colorText: Colors.black,
                               duration: const Duration(seconds: 2));
                         } else {
                           Get.snackbar(
                               "Uyarı", "Lütfen zorunlu alanları doldurunuz.",
-                              backgroundColor: kPrimaryRedColor,
-                              colorText: whiteColor,
+                              backgroundColor: whiteColor,
+                              icon: const Icon(Icons.warning),
+                              colorText: Colors.black,
                               duration: const Duration(seconds: 2));
                         }
                       },
@@ -271,14 +273,18 @@ class _DetailsPageShareState extends State<DetailsPageShare> {
                               .doc(
                                   "ilanImage/${firestore.collection("ilanImage").doc(widget.ilan_id).id}")
                               .delete();
+
                           Get.snackbar("Başarılı", "İlanın başarı ile silindi.",
-                              backgroundColor: kPrimaryGreenColor,
-                              colorText: whiteColor,
+                              backgroundColor: whiteColor,
+                              icon: const Icon(Icons.delete),
+                              colorText: Colors.black,
                               duration: const Duration(seconds: 2));
+                          Get.toNamed("/bottomnavbar");
                         } else {
                           Get.snackbar("Dikkat", "$e",
-                              backgroundColor: kPrimaryRedColor,
-                              colorText: whiteColor,
+                              backgroundColor: whiteColor,
+                              icon: const Icon(Icons.warning),
+                              colorText: Colors.black,
                               duration: const Duration(seconds: 2));
                         }
                       },

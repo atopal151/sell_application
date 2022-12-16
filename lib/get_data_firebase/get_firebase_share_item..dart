@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sell_app/component/user_controller.dart';
 import '../Screen/details_screen/detail_page share.dart';
-import 'component.dart';
+import '../component/component.dart';
 
 class FirebaseGetShareItem extends StatelessWidget {
   FirebaseGetShareItem({

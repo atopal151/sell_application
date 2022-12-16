@@ -185,57 +185,80 @@ class _SalesPageState extends State<SalesPage> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Obx((() => Center(
-                            child: imagepath == ""
-                                ? const Icon(
-                                    Icons.photo_camera,
-                                    color: kPrimaryRedColor,
-                                    size: 50,
-                                  )
-                                : Image.file(
-                                    File(imagepath.toString()),
-                                    fit: BoxFit.cover,
-                                  ),
-                          ))),
+                      child: Obx(
+                        (() => Center(
+                              child: imagepath == ""
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: InkWell(
+                                            child: const Icon(
+                                              Icons.photo,
+                                              color: kPrimaryRedColor,
+                                              size: 40,
+                                            ),
+                                            onTap: () async {
+                                              try {
+                                                file = await picker.pickImage(
+                                                    source:
+                                                        ImageSource.gallery);
+                                                imagepath = file!.path.obs;
+                                                setState(() {});
+                                              } catch (e) {
+                                                Get.snackbar(
+                                                  "Hata!",
+                                                  "Herhangi bir fotoğraf seçilmedi. ( $e )",
+                                                  backgroundColor: whiteColor,
+                                                  icon:
+                                                      const Icon(Icons.warning),
+                                                  colorText: Colors.black,
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: InkWell(
+                                              child: const Icon(
+                                                Icons.camera,
+                                                color: kPrimaryRedColor,
+                                                size: 40,
+                                              ),
+                                              onTap: () async {
+                                                try {
+                                                  file = await picker.pickImage(
+                                                      source:
+                                                          ImageSource.camera);
+                                                  imagepath = file!.path.obs;
+                                                  setState(() {});
+                                                } catch (e) {
+                                                  Get.snackbar(
+                                                    "Hata!",
+                                                    "Herhangi bir fotoğraf seçilmedi. ( $e )",
+                                                    backgroundColor: whiteColor,
+                                                    icon: const Icon(
+                                                        Icons.warning),
+                                                    colorText: Colors.black,
+                                                  );
+                                                }
+                                              },
+                                            ))
+                                      ],
+                                    )
+                                  : Image.file(
+                                      File(imagepath.toString()),
+                                      fit: BoxFit.cover,
+                                    ),
+                            )),
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            child: const Icon(
-                              Icons.photo,
-                              color: Colors.grey,
-                              size: 40,
-                            ),
-                            onTap: () async {
-                              file = await picker.pickImage(
-                                  source: ImageSource.gallery);
-                              imagepath = file!.path.obs;
-                              setState(() {});
-                            },
-                          )),
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            child: const Icon(
-                              Icons.camera,
-                              color: Colors.grey,
-                              size: 40,
-                            ),
-                            onTap: () async {
-                              file = await picker.pickImage(
-                                  source: ImageSource.camera);
-                              imagepath = file!.path.obs;
-                              setState(() {});
-                            },
-                          ))
-                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -268,15 +291,17 @@ class _SalesPageState extends State<SalesPage> {
                             }, SetOptions(merge: true));
                             Get.snackbar(
                                 "Başarılı", "İlanın başarı ile kaydedildi.",
-                                backgroundColor: kPrimaryGreenColor,
-                                colorText: whiteColor,
+                                backgroundColor: whiteColor,
+                                icon: const Icon(Icons.check),
+                                colorText: Colors.black,
                                 duration: const Duration(seconds: 2));
                           });
                         } else {
                           Get.snackbar(
                               "Uyarı", "Lütfen zorunlu alanları doldurunuz.",
-                              backgroundColor: kPrimaryRedColor,
-                              colorText: whiteColor,
+                              backgroundColor: whiteColor,
+                              icon: const Icon(Icons.warning),
+                              colorText: Colors.black,
                               duration: const Duration(seconds: 2));
                         }
                       },

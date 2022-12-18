@@ -6,9 +6,11 @@ class HeaderWithSearchBox extends StatelessWidget {
   const HeaderWithSearchBox({
     Key? key,
     required this.size,
+    required this.controllerSearch,
   }) : super(key: key);
 
   final Size size;
+  final TextEditingController controllerSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +58,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       cursorColor: kPrimaryRedColor,
+                      controller: controllerSearch,
                       onChanged: (value) {},
                       decoration: const InputDecoration(
                         hintText: "Ara",

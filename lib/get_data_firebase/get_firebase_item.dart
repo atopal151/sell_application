@@ -5,18 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sell_app/Screen/details_screen/detail_page.dart';
-import 'package:sell_app/component/user_controller.dart';
 import '../component/component.dart';
 
 class FirebaseGetItem extends StatelessWidget {
-  FirebaseGetItem({
+  const FirebaseGetItem({
     Key? key,
     required this.columnCount,
     required this.category,
   }) : super(key: key);
   final int columnCount;
   final String category;
-  UserController uctrl = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {

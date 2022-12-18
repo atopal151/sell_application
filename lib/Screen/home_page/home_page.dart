@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable, avoid_print
+// ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +19,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var selectedcategoryVal = "Diğer".obs;
   DropDownCategoty dropDownCategory = DropDownCategoty();
+  late TextEditingController controllerSearch;
+
+  @override
+  void initState() {
+    super.initState();
+    controllerSearch = TextEditingController();
+  }
 
   UserController uctrl = Get.put(UserController());
   @override
@@ -30,6 +37,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             HeaderWithSearchBox(
+              controllerSearch: controllerSearch,
               size: size,
             ),
             Obx(
@@ -49,6 +57,7 @@ class _HomePageState extends State<HomePage> {
                           selectedcategoryVal.value = newValue;
                         }
                         print("seçilen $selectedcategoryVal");
+                        print(controllerSearch.text.toString());
                         setState(() {});
                       }),
                     ),

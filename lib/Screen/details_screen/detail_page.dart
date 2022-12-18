@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:sell_app/component/component.dart';
 
 import '../../component/user_controller.dart';
+import '../message_page/component/message_detail.dart';
 
 class DetailsPage extends StatelessWidget {
   DetailsPage({
@@ -100,10 +101,9 @@ class DetailsPage extends StatelessWidget {
                                     "fiyat": fiyat.toString(),
                                     "iletisim": iletisim.toString(),
                                     "konum": konum.toString(),
-                                    "shareUserName": ucontrol.name.toString(),
-                                    "shareUserMail":
-                                        ucontrol.mailAdress.toString(),
-                                    "shareUserPhoto": ucontrol.photo.toString(),
+                                    "shareUserName": shareUserName.toString(),
+                                    "shareUserMail": shareUserMail.toString(),
+                                    "shareUserPhoto": shareUserPhoto.toString(),
                                     "ilanImages": photo_url.toString(),
                                     "ilanTarihi": ilanTarihi.toString(),
                                     "ilanid": ilan_id.toString(),
@@ -232,7 +232,11 @@ class DetailsPage extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        print(ilan_id);
+                        Get.to(MessageDetails(
+                          userMail: shareUserMail,
+                          userName: shareUserName,
+                          userPhoto: shareUserPhoto,
+                        ));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),

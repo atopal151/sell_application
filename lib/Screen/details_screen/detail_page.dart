@@ -272,7 +272,11 @@ class DetailsPage extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        Get.snackbar("İletişim numaram:", iletisim);
+                        Get.snackbar("İletişim Numarası", iletisim,
+                            backgroundColor: whiteColor,
+                            icon: const Icon(Icons.phone),
+                            colorText: Colors.black,
+                            duration: const Duration(seconds: 2));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),

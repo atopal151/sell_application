@@ -6,25 +6,25 @@ import 'package:get/get.dart';
 import 'user_controller.dart';
 
 final UserController ucontrol = Get.put(UserController());
-AppBar GeneralAppBar(BuildContext context, Color clr, clr2) {
+AppBar GeneralAppBar(BuildContext context, Color clr, clr2, String image_url) {
   return AppBar(
     backgroundColor: clr,
     elevation: 0,
     automaticallyImplyLeading: false,
     title: SizedBox(
-      height: 20,
+      height: 25,
       child: Image.asset(
-        "assets/image/sellme.png",
+        image_url,
         color: clr2,
       ),
     ),
     actions: [
       SizedBox(
-        width: 80,
+        width: 70,
         child: Center(
           child: CircleAvatar(
             backgroundColor: Colors.white,
-            radius: 20,
+            radius: 18,
             backgroundImage: NetworkImage(ucontrol.photo.toString()),
           ),
         ),

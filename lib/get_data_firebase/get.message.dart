@@ -14,17 +14,17 @@ class GetMessage extends StatelessWidget {
   }) : super(key: key);
   final int columnCount;
   final String userMail;
-  late String abc = ucontrol.mailAdress.toString() + userMail.toString();
-
-  late String abcd = userMail.toString() + ucontrol.mailAdress.toString();
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 150) / 2;
     final double itemWidth = size.width / 2;
-    final Stream<QuerySnapshot> usersStream =
-        FirebaseFirestore.instance.collection('messages').snapshots();
+    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance
+        .collection(
+            'messages/${ucontrol.mailAdress.toString()}--${userMail.toString()}/chats')
+        .orderBy("mesajTarihi", descending: false)
+        .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
       stream: usersStream,
@@ -41,48 +41,73 @@ class GetMessage extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: ListView(
-            children: snapshot.data!.docs.map(
-              (DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data()! as Map<String, dynamic>;
-                return Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: kDefaultPadding * 1.5,
-                          vertical: kDefaultPadding / 4,
-                        ),
-                        decoration: const BoxDecoration(
-                          color: kIconTextColor,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(22),
-                              topLeft: Radius.circular(22),
-                              bottomLeft: Radius.circular(22),
-                              bottomRight: Radius.circular(22)),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${data['message']}  ${data["mesajTarihi"]}",
-                            style: const TextStyle(
-                              color: Colors.white,
+            reverse: true,
+            children: snapshot.data!.docs
+                .map(
+                  (DocumentSnapshot document) {
+                    Map<String, dynamic> data =
+                        document.data()! as Map<String, dynamic>;
+                    return Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: kDefaultPadding * 1.5,
+                              vertical: kDefaultPadding / 4,
+                            ),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: const Offset(0, 4),
+                                  blurRadius: 20,
+                                  color: Colors.black.withOpacity(0.10),
+                                ),
+                              ],
+                              color: whiteColor,
+                              borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(22),
+                                  topLeft: Radius.circular(22),
+                                  bottomLeft: Radius.circular(22),
+                                  bottomRight: Radius.circular(22)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${data['message']} ",
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "${data["mesajTarihi"]}",
+                                    style: const TextStyle(
+                                        color: Colors.black54, fontSize: 10),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 20,
-                      backgroundImage:
-                          NetworkImage(data["userMailPhoto"].toString()),
-                    ),
-                  ],
-                );
-              },
-            ).toList(),
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 15,
+                          backgroundImage:
+                              NetworkImage(data["userMailPhoto"].toString()),
+                        ),
+                      ],
+                    );
+                  },
+                )
+                .toList()
+                .reversed
+                .toList(),
           ),
         );
       },

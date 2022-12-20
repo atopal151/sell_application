@@ -32,7 +32,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: GeneralAppBar(context, kPrimaryRedColor, Colors.white),
+      appBar: GeneralAppBar(
+          context, kPrimaryRedColor, Colors.white, "assets/image/sellme.png"),
       body: SafeArea(
         child: Column(
           children: [

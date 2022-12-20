@@ -13,9 +13,9 @@ AppBar ProfileAppBar(BuildContext context) {
     elevation: 0,
     automaticallyImplyLeading: false,
     title: SizedBox(
-        height: 20,
+        height: 30,
         child: Image.asset(
-          "assets/image/sellme.png",
+          "assets/image/profil.png",
           color: kPrimaryRedColor,
         )),
     actions: [

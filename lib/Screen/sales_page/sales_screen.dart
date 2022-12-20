@@ -59,7 +59,8 @@ class _SalesPageState extends State<SalesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: GeneralAppBar(context, Colors.white, kPrimaryRedColor),
+      appBar: GeneralAppBar(
+          context, Colors.white, kPrimaryRedColor, "assets/image/ilan.png"),
       body: SingleChildScrollView(
         child: Center(
           child: Column(

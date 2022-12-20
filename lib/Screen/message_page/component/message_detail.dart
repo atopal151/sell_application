@@ -5,12 +5,12 @@ import 'package:sell_app/component/component.dart';
 import 'package:sell_app/get_data_firebase/get.message.dart';
 
 class MessageDetails extends StatefulWidget {
-  const MessageDetails(
-      {Key? key,
-      required this.userName,
-      required this.userPhoto,
-      required this.userMail})
-      : super(key: key);
+  const MessageDetails({
+    Key? key,
+    required this.userName,
+    required this.userPhoto,
+    required this.userMail,
+  }) : super(key: key);
   final String userName;
   final String userPhoto;
   final String userMail;
@@ -32,6 +32,7 @@ class _MessageDetailsState extends State<MessageDetails> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: whiteColor,
@@ -62,13 +63,14 @@ class _MessageDetailsState extends State<MessageDetails> {
                 userMail: widget.userMail.toString(),
               )),
           Expanded(
-            flex: 4,
+            flex: 3,
             child: SizedBox(
               height: Get.height,
               width: Get.width,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: MessageBox(
+                  shareUserName: widget.userName,
                   size: size,
                   controllerMessage: controllerMessage,
                   shareMail: widget.userMail,

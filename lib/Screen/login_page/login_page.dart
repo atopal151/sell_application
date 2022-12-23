@@ -46,8 +46,8 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: SizedBox(
-                      width: 250,
-                      height: 210,
+                      width: 180,
+                      height: 180,
                       child: Image.asset("assets/image/sellme.png"),
                     ),
                   ),

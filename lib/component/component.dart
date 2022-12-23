@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const kPrimaryGreenColor = Color(0xff7c8c55);
 
 const kPrimaryRedColor = Color(0xffd04f44);
+const messageColor = Color(0xffe16d69);
 const kButtonlogintColor = Color(0xff7c8c55);
 const kButtonRegisterColor = Color(0xff86975b);
 const kButtonRegisterColor2 = Color(0xff5c683f);

@@ -221,88 +221,90 @@ class DetailsPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: Get.width * 0.4,
-                    decoration: BoxDecoration(
-                      color: kPrimaryRedColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Get.to(MessageDetails(
-                          userMail: shareUserMail,
-                          userName: shareUserName,
-                          userPhoto: shareUserPhoto,
-                        ));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            Icon(
-                              Icons.message,
-                              color: whiteColor,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "Sohbet",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+              ucontrol.mailAdress.toString() == shareUserMail.toString()
+                  ? Container()
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: Get.width * 0.4,
+                          decoration: BoxDecoration(
+                            color: kPrimaryRedColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Get.to(MessageDetails(
+                                userMail: shareUserMail,
+                                userName: shareUserName,
+                                userPhoto: shareUserPhoto,
+                              ));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  Icon(
+                                    Icons.message,
+                                    color: whiteColor,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "Sohbet",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: Get.width * 0.4,
-                    decoration: BoxDecoration(
-                      color: kPrimaryRedColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Get.snackbar("İletişim Numarası", iletisim,
-                            backgroundColor: whiteColor,
-                            icon: const Icon(Icons.phone),
-                            colorText: Colors.black,
-                            duration: const Duration(seconds: 2));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            Icon(
-                              Icons.phone,
-                              color: whiteColor,
                             ),
-                            SizedBox(width: 10),
-                            Text(
-                              "Ara",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          width: Get.width * 0.4,
+                          decoration: BoxDecoration(
+                            color: kPrimaryRedColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Get.snackbar("İletişim Numarası", iletisim,
+                                  backgroundColor: whiteColor,
+                                  icon: const Icon(Icons.phone),
+                                  colorText: Colors.black,
+                                  duration: const Duration(seconds: 2));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  Icon(
+                                    Icons.phone,
+                                    color: whiteColor,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "Ara",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
               const SizedBox(
                 height: 30,
               )

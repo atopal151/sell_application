@@ -116,6 +116,16 @@ class MessageBox extends StatelessWidget {
                           "mesajTarihi":
                               "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}",
                         }, SetOptions(merge: true));
+                        firestore
+                            .doc(
+                                "chats/${shareMail.toString()}/user/${ucontrol.mailAdress.toString()}")
+                            .set({
+                          "userMail": ucontrol.mailAdress.toString(),
+                          "userName": ucontrol.name.toString(),
+                          "userMailPhoto": ucontrol.photo.toString(),
+                          "mesajTarihi":
+                              "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}",
+                        }, SetOptions(merge: true));
                         controllerMessage.text = "";
                       } else {
                         Get.snackbar("Uyarı", "Herhangi birşey yazmadınız!",

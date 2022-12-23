@@ -33,7 +33,7 @@ class GetMessageList extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const SpinKitRing(
             color: kPrimaryRedColor,
-            size: 50.0,
+            size: 20.0,
           );
         }
         return Padding(
@@ -71,7 +71,7 @@ class GetMessageList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${data['userName']} ",
+                                "${data['userName']}  ",
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,

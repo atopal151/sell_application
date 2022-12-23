@@ -36,6 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
       backgroundColor: Colors.white,
       body: Center(
           child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
               flex: 2,
@@ -43,8 +44,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 padding: const EdgeInsets.all(10.0),
                 child: Center(
                   child: SizedBox(
-                      height: 200,
-                      width: 200,
+                      height: 180,
+                      width: 180,
                       child: Image.asset('assets/image/sellme.png')),
                 ),
               )),
@@ -84,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Expanded(
             flex: 1,
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(8.0),
               child: (AnimatedButton(
                 onPress: () {
                   if (controllerPassword.text == controllerTwoPassword.text) {
@@ -113,7 +114,25 @@ class _RegisterPageState extends State<RegisterPage> {
                 transitionType: TransitionType.LEFT_TO_RIGHT,
               )),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Do you have an account "),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed("/login");
+                  },
+                  child: const Text(
+                    " Sing In",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       )),
     );

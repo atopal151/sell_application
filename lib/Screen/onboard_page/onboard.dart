@@ -25,20 +25,6 @@ class _Onboard1subState extends State<Onboard1sub> {
             children: [
               Slide(
                   hero: SizedBox(
-                      width: 180, child: Image.asset("assets/image/shops.png")),
-                  title: "Boost your traffic",
-                  subtitle:
-                      "Outreach to many social networks to improve your statistics",
-                  onNext: nextPage),
-              Slide(
-                  hero: SizedBox(
-                      width: 180, child: Image.asset("assets/image/shops.png")),
-                  title: "Give the best solution",
-                  subtitle:
-                      "We will give best solution for your business isues",
-                  onNext: nextPage),
-              Slide(
-                  hero: SizedBox(
                     width: 180,
                     child: Image.asset("assets/image/shops.png"),
                   ),

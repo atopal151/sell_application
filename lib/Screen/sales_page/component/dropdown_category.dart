@@ -6,6 +6,10 @@ class DropDownCategoty {
     "Ev Eşyaları",
     "Elektronik",
     "Giyim",
+    "Otomotiv",
+    "Sanayi",
+    "Tekstil",
+    "Hizmet",
     "Bebek",
   ];
 

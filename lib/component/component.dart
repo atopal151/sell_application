@@ -18,5 +18,5 @@ const kSecondaryColor = Color(0xFFB5BFD0);
 const kDefaultShadow = BoxShadow(
   offset: Offset(0, 10),
   blurRadius: 27,
-  color: Colors.black12, // Black color with 12% opacity
+  color: Colors.black26, // Black color with 12% opacity
 );

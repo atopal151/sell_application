@@ -6,15 +6,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sell_app/Screen/details_screen/detail_page.dart';
 import '../component/component.dart';
+import '../component/general_app_barr.dart';
 
 class FirebaseGetItem extends StatelessWidget {
-  const FirebaseGetItem({
+  FirebaseGetItem({
     Key? key,
     required this.columnCount,
     required this.category,
   }) : super(key: key);
   final int columnCount;
   final String category;
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -125,19 +128,59 @@ class FirebaseGetItem extends StatelessWidget {
                             ),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               const Icon(
                                 Icons.location_on,
                                 color: greyColor,
                                 size: 18,
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
                               Text(
                                 data['konum'].toString(),
                                 style: const TextStyle(
                                     fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  firestore
+                                      .doc(
+                                          "favorites/${firestore.collection("favorites").doc().id}")
+                                      .set({
+                                    "category": category.toString(),
+                                    "situation": data['situation'].toString(),
+                                    "ilanBaslik": data['ilanBaslik'].toString(),
+                                    "ilanAciklama":
+                                        data['ilanAciklama'].toString(),
+                                    "fiyat": data['fiyat'].toString(),
+                                    "iletisim": data["iletisim"].toString(),
+                                    "konum": data['konum'].toString(),
+                                    "shareUserName":
+                                        data['shareUserName'].toString(),
+                                    "shareUserMail":
+                                        data['shareUserMail'].toString(),
+                                    "shareUserPhoto":
+                                        data['shareUserPhoto'].toString(),
+                                    "ilanImages": data['ilanImages'].toString(),
+                                    "ilanTarihi": data['ilanTarihi'].toString(),
+                                    "ilanid": document.id.toString(),
+                                    "addUserMail":
+                                        ucontrol.mailAdress.toString()
+                                  }, SetOptions(merge: true));
+                                  Get.snackbar(
+                                      "Başarılı", "Favorilere kaydedildi.",
+                                      backgroundColor: whiteColor,
+                                      icon: const Icon(Icons.check),
+                                      colorText: Colors.black,
+                                      duration: const Duration(seconds: 1));
+                                },
+                                child: const Icon(
+                                  Icons.favorite,
+                                  color: kPrimaryRedColor,
+                                  size: 18,
+                                ),
                               ),
                             ],
                           ),

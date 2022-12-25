@@ -222,7 +222,15 @@ class DetailsPage extends StatelessWidget {
                 ),
               ),
               ucontrol.mailAdress.toString() == shareUserMail.toString()
-                  ? Container()
+                  ? const Center(
+                      child: Text(
+                        "Bu ilan Sana Ait",
+                        style: TextStyle(
+                            color: kPrimaryRedColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                    )
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

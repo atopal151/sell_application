@@ -11,8 +11,10 @@ class TextBoxWidgetRegister extends StatelessWidget {
     required this.title,
     required this.type,
     required this.controllerText,
+    required this.obscureText,
     required this.icons,
   }) : super(key: key);
+  bool obscureText;
   TextInputType type;
   String title;
   TextEditingController controllerText;
@@ -29,10 +31,11 @@ class TextBoxWidgetRegister extends StatelessWidget {
         height: 54,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
-          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: TextField(
+          obscureText: obscureText,
+          obscuringCharacter: "*",
           keyboardType: type,
           controller: controllerText,
           cursorColor: kPrimaryRedColor,

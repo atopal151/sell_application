@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:get/get.dart';
-
 import '../../component/component.dart';
 import 'component/text_field_register.dart';
 
@@ -16,18 +16,20 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController controllerMail;
   late TextEditingController controllerPassword;
-  late TextEditingController controllerName;
-  late TextEditingController controllerTwoPassword;
+  late TextEditingController controllerPasswordTwo;
+
+  late FirebaseAuth auth;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   void initState() {
     super.initState();
+
+    auth = FirebaseAuth.instance;
     controllerMail = TextEditingController();
     controllerPassword = TextEditingController();
-    controllerName = TextEditingController();
-    controllerTwoPassword = TextEditingController();
+    controllerPasswordTwo = TextEditingController();
   }
 
   @override
@@ -49,33 +51,37 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Image.asset('assets/image/sellme.png')),
                 ),
               )),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Sign Up",
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ),
           Expanded(
             flex: 3,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   TextBoxWidgetRegister(
-                    icons: const Icon(Icons.person),
-                    title: "Kullanıcı Adı",
-                    controllerText: controllerName,
-                    type: TextInputType.text,
-                  ),
-                  TextBoxWidgetRegister(
+                    obscureText: false,
                     icons: const Icon(Icons.mail),
                     title: "Email",
                     controllerText: controllerMail,
                     type: TextInputType.text,
                   ),
                   TextBoxWidgetRegister(
+                    obscureText: true,
                     icons: const Icon(Icons.lock),
                     title: "Şifre",
                     controllerText: controllerPassword,
                     type: TextInputType.number,
                   ),
                   TextBoxWidgetRegister(
+                    obscureText: true,
                     icons: const Icon(Icons.lock),
-                    title: "Şifreyi Onayla",
-                    controllerText: controllerTwoPassword,
+                    title: "Şifreni Onayla",
+                    controllerText: controllerPasswordTwo,
                     type: TextInputType.number,
                   ),
                 ],
@@ -88,18 +94,10 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.all(8.0),
               child: (AnimatedButton(
                 onPress: () {
-                  if (controllerPassword.text == controllerTwoPassword.text) {
-                    firestore
-                        .doc("users/${firestore.collection("users").doc().id}")
-                        .set({
-                      "userName": controllerName.text.toString(),
-                      "email": controllerMail.text.toString(),
-                      "password": controllerPassword.text.toString(),
-                    }, SetOptions(merge: true));
-
-                    Get.snackbar("Başarılı", "Kayıt Tamamlandı.");
+                  if (controllerPassword == controllerPasswordTwo) {
+                    createUserEmailAndPassword();
                   } else {
-                    Get.snackbar("Dikkat!", "Şifrenizi doğru yazın...");
+                    Get.snackbar("Uyarı", "Lütfen şifrenizi doğru girin.");
                   }
                 },
                 text: 'Kayıt ol',
@@ -115,26 +113,41 @@ class _RegisterPageState extends State<RegisterPage> {
               )),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Do you have an account "),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed("/login");
-                  },
-                  child: const Text(
-                    " Sing In",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Do you have an account "),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed("/login");
+                    },
+                    child: const Text(
+                      " Sing In",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
       )),
     );
+  }
+
+  void createUserEmailAndPassword() async {
+    try {
+      var userCredential = (await auth.createUserWithEmailAndPassword(
+        email: controllerMail.text,
+        password: controllerPassword.text,
+      ))
+          .user;
+    } catch (error) {
+      Get.snackbar("Uyarı!", "Bu Email adresi zaten kullanılıyor.");
+    }
   }
 }

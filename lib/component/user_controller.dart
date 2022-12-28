@@ -9,9 +9,11 @@ import '../Screen/login_page/login_page.dart';
 class UserController extends GetxController {
   late FirebaseAuth auth;
 
-  final photo = photo1.value.obs;
-  final name = name1.value.obs;
-  final mailAdress = mailAdress1.value.obs;
+  final photo =
+      "https://w7.pngwing.com/pngs/1000/665/png-transparent-computer-icons-profile-s-free-angle-sphere-profile-cliparts-free.png"
+          .obs;
+  final name = "Sell me Kullanıcısı".obs;
+  final mailAdress = "".obs;
 
   @override
   void onInit() {
@@ -19,15 +21,9 @@ class UserController extends GetxController {
     auth = FirebaseAuth.instance;
 
     auth.authStateChanges().listen((User? user) {
-      if (user == null) {
-        mailAdress.value = mailAdress1.value;
-        name.value = name1.value;
-        photo.value = photo1.value;
-      } else {
-        mailAdress.value = auth.currentUser!.email!;
-        photo.value = auth.currentUser!.photoURL!;
-        name.value = auth.currentUser!.displayName!;
-      }
+      mailAdress.value = auth.currentUser!.email!;
+      photo.value = auth.currentUser!.photoURL!;
+      name.value = auth.currentUser!.displayName!;
     });
   }
 

@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     controllerSearch = TextEditingController();
+    print("bla bla ${ucontrol.mailAdress.toString()}");
   }
 
   UserController uctrl = Get.put(UserController());

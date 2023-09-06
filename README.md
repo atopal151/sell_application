@@ -1,5 +1,9 @@
 
-![1](https://github.com/atopal151/sell_application/assets/45879059/e11408c6-5e64-4b36-8f7d-9b0301b3e6bd)
 
 
-![2](https://github.com/atopal151/sell_application/assets/45879059/40333128-2782-4976-9a64-a8b177e865b1)
+![1](https://github.com/atopal151/sell_application/assets/45879059/b06df644-eb63-4dfe-92e6-4955b2f6689d)
+
+
+
+
+![2](https://github.com/atopal151/sell_application/assets/45879059/b5ddd347-ed81-4d52-b10e-c68066fd1a32)
